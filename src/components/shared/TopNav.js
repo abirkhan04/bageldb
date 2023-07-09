@@ -60,7 +60,7 @@ const TopNav = () => {
                     <Link to="faq">FAQ</Link>
                     <Link to="#contact_us">Contact Us</Link>
                     <span className={classes.demoBeta}>
-                        <Link to="#see_demo">See Demo</Link>
+                        <Link to="bagel-console">See Demo</Link>
                         <Link to="#join_beta">Join Beta</Link>
                     </span>
                 </div>
