@@ -51,7 +51,6 @@ const BagelConsole = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [isCopping, setIsCopping] = useState(false);
     const [searchParams] = useSearchParams();
-    // const [isError, setIsError] = useState(false);
     const requestJson = searchParams.get("json");
 
     const defaultRequestData = `{
@@ -113,14 +112,10 @@ const BagelConsole = () => {
     const fetchRequestData = async () => {
         setIsLoading(true);
         const requestData = JSON.parse(requestEditorCode);
-        console.log("request data", requestData);
-        // responseEditorRef.current.setValue("");
         setResponseEditorCode("");
         try {
             const data = await actionToBagelDB(requestData);
-            // responseEditorRef.current.setValue(JSON.stringify(data, null, 2));
             setResponseEditorCode(JSON.stringify(data));
-            console.log("set Value", JSON.stringify(data, null, 2));
             setIsLoading(false);
         } catch (error) {
             console.log(error);
