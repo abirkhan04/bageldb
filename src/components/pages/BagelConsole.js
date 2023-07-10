@@ -62,6 +62,9 @@ const BagelConsole = () => {
     const [end, setEnd] = useState(15);
     const requestJson = searchParams.get("json");
 
+    const [responseEditorCode, setResponseEditorCode] = React.useState(null);
+    const classes = useStyles();
+
 
     const defaultRequestData = `{
         "type": "insert",
@@ -97,20 +100,19 @@ const BagelConsole = () => {
     const [requestEditorCode, setRequestEditorCode] = React.useState(
         requestJson ? JSON.parse(requestJson) : defaultRequestData
     );
-    const [responseEditorCode, setResponseEditorCode] = React.useState(null);
-    const classes = useStyles();
-
 
     const handleClose = ()=> {
         setOpen(false);
     }
 
+    /* Opening history queries dialog*/
     const handleClickOpen = () => {
         const queries = JSON.parse(localStorage.getItem("queries")) || [];
         setQueries(queries);
         setOpen(true);
     };
 
+    /**History queries next and previous successively */
     const handleNext =()=> {
         setEnd(Math.min(queries.length, end+15));
     }
@@ -119,17 +121,18 @@ const BagelConsole = () => {
         setEnd(Math.max(15, end-15 ));
     }
 
-
+    
     useEffect(()=> {
        setStart(Math.max(0, end-15));
     }, [end])
+    
     const responseEditorRef = useRef({});
 
     const handleEditorChange = (value) => setRequestEditorCode(value);
     const handleEditorDidMount = (editor) =>
         (responseEditorRef.current = editor);
 
-
+    /* Task of a share query button, copying share query url */
     const shareQueryActionButton = async () => {
         const queryString = encodeURIComponent(JSON.stringify(requestEditorCode));
         const url = `${window.location.href}?json=${queryString}`;
@@ -142,6 +145,7 @@ const BagelConsole = () => {
         }
     };
 
+    /**Fetching request data and storing that to localStorage*/
     const fetchRequestData = async () => {
         setIsLoading(true);
         const requestData = JSON.parse(requestEditorCode);
@@ -276,6 +280,7 @@ const BagelConsole = () => {
 
         </div>
         <div className={classes.editorWrapper}>
+            {/* Request Editor */}
             <Editor
                 loading={<Loading />}
                 height="100vh"
@@ -285,6 +290,7 @@ const BagelConsole = () => {
                 options={{ fontSize: 13, minimap: { enabled: false } }}
                 onChange={handleEditorChange}
             />
+            {/* Response Editor */}
             <Editor
                 loading={<Loading />}
                 height="100vh"
@@ -301,14 +307,14 @@ const BagelConsole = () => {
                 }}
                 onMount={handleEditorDidMount}
             />
-
+            {/* History Button Dialog */}
             <Dialog
                 classes={{ paper: classes.dialogPaper }}
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="alert-dialog-title"
             >
-                <DialogTitle id="alert-dialog-title"> Queries in the History </DialogTitle>
+                <DialogTitle id="alert-dialog-title"> Queries are in the History </DialogTitle>
                 <DialogContent>
                     {queries.length>0 && queries.slice(start, end).map((q,index)=> <p key={index}>{index}-{JSON.stringify(q)}</p>)}
                 </DialogContent>

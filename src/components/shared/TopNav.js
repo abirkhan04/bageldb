@@ -56,9 +56,11 @@ const TopNav = () => {
     return (
         <div className={classes.root}>
             <div className={classes.topNav}>
+                {/* Left Logo and BagelDB */}
                 <div className={classes.bagel}>
                     <div className={classes.bagelWrapper} onClick={() => navigate("/")} style={{ cursor: 'pointer' }}> <img src={Bagel} width={44} height={41} alt={"logo"} /> Bagel<strong>DB</strong></div>
                 </div>
+                {/* Right Navigation */}
                 <div className={classes.rightNavigation}>
                     <Link to="features">Features</Link>
                     <Link to="about_us">About Us</Link>

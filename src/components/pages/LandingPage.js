@@ -85,7 +85,7 @@ const Landing = () => {
                     </div>
                 </div>
                 <div className={classes.bodyBagel}>
-                    <img src={Bagel} width={400} height={376} alt={'bagel'}/>
+                    <img src={Bagel} width={402} height={376} alt={'bagel'}/>
                 </div>
             </div>
         </div>
