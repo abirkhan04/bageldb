@@ -21,3 +21,7 @@ EXPOSE 3005
 
 # Specify the startup command
 CMD ["npm", "start"]
+
+
+# docker build -t my-react-app .
+# docker run -p 3005:3005 my-react-app
