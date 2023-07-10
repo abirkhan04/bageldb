@@ -314,7 +314,7 @@ const BagelConsole = () => {
                 onClose={handleClose}
                 aria-labelledby="alert-dialog-title"
             >
-                <DialogTitle id="alert-dialog-title"> Queries are in the History </DialogTitle>
+                <DialogTitle id="alert-dialog-title"> Queries in the History </DialogTitle>
                 <DialogContent>
                     {queries.length>0 && queries.slice(start, end).map((q,index)=> <p key={index}>{index}-{JSON.stringify(q)}</p>)}
                 </DialogContent>
