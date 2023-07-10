@@ -1,8 +1,8 @@
-import { useEffect } from "react";
 import { makeStyles } from "@mui/styles";
 import { Link } from "react-router-dom";
 import Bagel from '../../assets/bagel.PNG';
 
+/*Styling elements*/
 const useStyle = makeStyles({
     root: {
         backgroundColor: '#050505',
@@ -64,11 +64,6 @@ const useStyle = makeStyles({
 });
 
 const Landing = () => {
-
-    useEffect(() => {
-        // animateBanner();
-    }, []);
-
     const classes = useStyle();
     return (
         <div className={classes.root}>
@@ -76,7 +71,7 @@ const Landing = () => {
                 <div className={classes.textWrapper}>
                     <div className={classes.bodyWriting}>World's First Collaborative Vector Database</div>
                     <div style={{ color: '#969696' }}>
-                        A collaborative vector database designed to Cut data processing spend via collaboration and
+                        A collaborative vector database designed to Cut data processing spent via collaboration and
                         Data ownership.
                     </div>
                     <div className={classes.demoBeta}>

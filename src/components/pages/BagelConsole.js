@@ -8,11 +8,12 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Button } from "@material-ui/core";
-import {ChevronLeft, ChevronRight} from '@mui/icons-material';
+import { ChevronLeft, ChevronRight } from '@mui/icons-material';
 
 const BagelDB = require("bageldb-beta");
 
 const db = new BagelDB();
+
 
 const ACTION_TYPE = {
     PING: "ping",
@@ -102,7 +103,7 @@ const BagelConsole = () => {
         requestJson ? JSON.parse(requestJson) : defaultRequestData
     );
 
-    const handleClose = ()=> {
+    const handleClose = () => {
         setOpen(false);
     }
 
@@ -114,19 +115,19 @@ const BagelConsole = () => {
     };
 
     /**History queries next and previous successively */
-    const handleNext =()=> {
-        setEnd(Math.min(queries.length, end+15));
+    const handleNext = () => {
+        setEnd(Math.min(queries.length, end + 15));
     }
 
-    const handlePrevious = ()=> {
-        setEnd(Math.max(15, end-15 ));
+    const handlePrevious = () => {
+        setEnd(Math.max(15, end - 15));
     }
 
-    
-    useEffect(()=> {
-       setStart(Math.max(0, end-15));
+
+    useEffect(() => {
+        setStart(Math.max(0, end - 15));
     }, [end])
-    
+
     const responseEditorRef = useRef({});
 
     const handleEditorChange = (value) => setRequestEditorCode(value);
@@ -164,7 +165,7 @@ const BagelConsole = () => {
         setIsLoading(false);
     };
 
-
+    /* Action to BagelDB*/
     const actionToBagelDB = async (opts) => {
         const { type, index, inputText, data } = opts;
         switch (type) {
@@ -188,8 +189,7 @@ const BagelConsole = () => {
     return <>
         <div className={classes.action}>
             <div style={{ marginRight: '10px' }}>
-                {" "}
-                {isLoading && <Loading size={40} />}{" "}
+                {isLoading && <Loading size={40} />}
             </div>
             <button className={classes.actionButton}
                 onClick={fetchRequestData}
@@ -310,21 +310,20 @@ const BagelConsole = () => {
             />
             {/* History Button Dialog */}
             <Dialog
-                classes={{ paper: classes.dialogPaper }}
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="alert-dialog-title"
             >
                 <DialogTitle id="alert-dialog-title"> Queries in the History </DialogTitle>
                 <DialogContent>
-                    {queries.length>0 && queries.slice(start, end).map((q,index)=> <p key={index}>{index+1}-{JSON.stringify(q)}</p>)}
+                    {queries.length > 0 && queries.slice(start, end).map((q, index) => <p key={index}>{index + 1}-{JSON.stringify(q)}</p>)}
                 </DialogContent>
                 <DialogActions>
-                   <Button onClick={handlePrevious}>
-                   <ChevronLeft/>
-                   </Button>
+                    <Button onClick={handlePrevious}>
+                        <ChevronLeft />
+                    </Button>
                     <Button onClick={handleNext}>
-                       <ChevronRight/>
+                        <ChevronRight />
                     </Button>
                     <Button onClick={handleClose}>
                         {'Close'}

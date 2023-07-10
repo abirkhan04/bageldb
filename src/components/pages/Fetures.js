@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { makeStyles } from "@mui/styles";
 import image1 from "../../assets/1.png";
 import image2 from "../../assets/2.PNG";
@@ -33,13 +32,10 @@ const useStyle = makeStyles({
 
 const Features = () => {
 
-    useEffect(() => {
-        // animateBanner();
-    }, []);
-
     const classes = useStyle();
     return (
         <div className={classes.root}>
+            {/* Feature header  */}
             <div className={classes.header}>
                 <div style={{fontFamily: 'Manrope',fontSize: '18px'}}>
                       Features
@@ -48,6 +44,8 @@ const Features = () => {
                      Features That Make BagelDB a Great Tool
                 </div>
             </div>
+
+            {/* Feature Body */}
             <div className={classes.body}>
                 <div style={{paddingRight: '30px'}}>
                     <img src={image1} alt="img1"/>
