@@ -1,8 +1,13 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Loading from "../shared/Loading";
 import Editor from 'react-monaco-editor';
 import { makeStyles } from "@mui/styles";
 import { useSearchParams } from "react-router-dom";
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import { Button } from "@material-ui/core";
 
 const BagelDB = require("bageldb-beta");
 
@@ -50,8 +55,13 @@ const useStyles = makeStyles({
 const BagelConsole = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [isCopping, setIsCopping] = useState(false);
+    const [open, setOpen] = useState(false);
     const [searchParams] = useSearchParams();
+    const [queries, setQueries] = useState([]);
+    const [start, setStart] = useState(0);
+    const [end, setEnd] = useState(15);
     const requestJson = searchParams.get("json");
+
 
     const defaultRequestData = `{
         "type": "insert",
@@ -90,6 +100,29 @@ const BagelConsole = () => {
     const [responseEditorCode, setResponseEditorCode] = React.useState(null);
     const classes = useStyles();
 
+
+    const handleClose = ()=> {
+        setOpen(false);
+    }
+
+    const handleClickOpen = () => {
+        const queries = JSON.parse(localStorage.getItem("queries")) || [];
+        setQueries(queries);
+        setOpen(true);
+    };
+
+    const handleNext =()=> {
+        setEnd(Math.min(queries.length, end+15));
+    }
+
+    const handlePrevious = ()=> {
+        setEnd(Math.max(15, end-15 ));
+    }
+
+
+    useEffect(()=> {
+       setStart(Math.max(0, end-15));
+    }, [end])
     const responseEditorRef = useRef({});
 
     const handleEditorChange = (value) => setRequestEditorCode(value);
@@ -114,6 +147,9 @@ const BagelConsole = () => {
         const requestData = JSON.parse(requestEditorCode);
         setResponseEditorCode("");
         try {
+            let queries = JSON.parse(localStorage.getItem("queries")) || [];
+            queries.push(requestData);
+            localStorage.setItem("queries", JSON.stringify(queries));
             const data = await actionToBagelDB(requestData);
             setResponseEditorCode(JSON.stringify(data));
             setIsLoading(false);
@@ -220,6 +256,7 @@ const BagelConsole = () => {
             <button
                 className={classes.shareQueryButton}
                 type="button"
+                onClick={handleClickOpen}
             >
                 <svg
                     width="24"
@@ -264,6 +301,29 @@ const BagelConsole = () => {
                 }}
                 onMount={handleEditorDidMount}
             />
+
+            <Dialog
+                classes={{ paper: classes.dialogPaper }}
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+            >
+                <DialogTitle id="alert-dialog-title"> Queries in the History </DialogTitle>
+                <DialogContent>
+                    {queries.length>0 && queries.slice(start, end).map((q,index)=> <p key={index}>{index}-{JSON.stringify(q)}</p>)}
+                </DialogContent>
+                <DialogActions>
+                   <Button onClick={handlePrevious}>
+                        Prev
+                    </Button>
+                    <Button onClick={handleNext}>
+                        Next
+                    </Button>
+                    <Button onClick={handleClose}>
+                        {'Close'}
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </div>
     </>
 }

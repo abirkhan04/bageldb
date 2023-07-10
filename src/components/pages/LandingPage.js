@@ -80,8 +80,8 @@ const Landing = () => {
                         Data ownership.
                     </div>
                     <div className={classes.demoBeta}>
-                        <Link to="#join_beta" className={classes.beta}>Join Beta</Link>
-                        <Link to="#see_demo" className={classes.demo}>See Demo</Link>
+                        <Link to="join_beta" className={classes.beta}>Join Beta</Link>
+                        <Link to="bagel-console" className={classes.demo}>See Demo</Link>
                     </div>
                 </div>
                 <div className={classes.bodyBagel}>
