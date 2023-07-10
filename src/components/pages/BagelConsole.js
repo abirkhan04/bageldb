@@ -8,6 +8,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Button } from "@material-ui/core";
+import {ChevronLeft, ChevronRight} from '@mui/icons-material';
 
 const BagelDB = require("bageldb-beta");
 
@@ -316,14 +317,14 @@ const BagelConsole = () => {
             >
                 <DialogTitle id="alert-dialog-title"> Queries in the History </DialogTitle>
                 <DialogContent>
-                    {queries.length>0 && queries.slice(start, end).map((q,index)=> <p key={index}>{index}-{JSON.stringify(q)}</p>)}
+                    {queries.length>0 && queries.slice(start, end).map((q,index)=> <p key={index}>{index+1}-{JSON.stringify(q)}</p>)}
                 </DialogContent>
                 <DialogActions>
                    <Button onClick={handlePrevious}>
-                        Prev
-                    </Button>
+                   <ChevronLeft/>
+                   </Button>
                     <Button onClick={handleNext}>
-                        Next
+                       <ChevronRight/>
                     </Button>
                     <Button onClick={handleClose}>
                         {'Close'}
