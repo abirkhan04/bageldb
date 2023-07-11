@@ -6,6 +6,7 @@ import Bagel from '../../assets/bagel.PNG';
 const Features = lazy(() => import('./Fetures'));
 const AboutUs = lazy(() => import('./AboutUs'));
 const TopNav = lazy(() => import('../shared/TopNav'));
+const Footer = lazy(()=> import('../shared/Footer'));
 const Faq = lazy(()=> import('../pages/FAQ'));
 const Invitation = lazy(()=> import('../pages/Invitation'));
 
@@ -102,6 +103,9 @@ const Landing = () => {
             </section>
             <section>
                 <Invitation />
+            </section>
+            <section>
+                <Footer/>
             </section>
         </div>
     );

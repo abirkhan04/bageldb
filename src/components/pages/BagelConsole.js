@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, lazy } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Loading from "../shared/Loading";
 import Editor from 'react-monaco-editor';
 import { makeStyles } from "@mui/styles";
@@ -13,8 +13,6 @@ import { ChevronLeft, ChevronRight } from '@mui/icons-material';
 const BagelDB = require("bageldb-beta");
 
 const db = new BagelDB();
-
-const TopNav = lazy(() => import('../shared/TopNav'));
 
 const ACTION_TYPE = {
     PING: "ping",
