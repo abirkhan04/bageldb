@@ -6,6 +6,8 @@ import Bagel from '../../assets/bagel.PNG';
 const Features = lazy(() => import('./Fetures'));
 const AboutUs = lazy(() => import('./AboutUs'));
 const TopNav = lazy(() => import('../shared/TopNav'));
+const Faq = lazy(()=> import('../pages/FAQ'));
+const Invitation = lazy(()=> import('../pages/Invitation'));
 
 /*Styling elements*/
 const useStyle = makeStyles({
@@ -30,7 +32,7 @@ const useStyle = makeStyles({
         '& a': {
             textDecoration: 'none',
             border: '1px solid #E5AC3C',
-            padding: '15px',
+            padding: '10px 30px',
             borderRadius: '25px'
         }
     },
@@ -39,13 +41,11 @@ const useStyle = makeStyles({
         fontWeight: 'bold',
         borderRadius: '20px',
         backgroundColor: '#E5AC3C',
-        padding: '10px'
     },
     demo: {
         color: '#E5AC3C',
         fontWeight: 'bold',
         borderRadius: '20px',
-        padding: '10px',
         border: '1px solid #E5AC3C',
         marginLeft: '10px'
     },
@@ -96,6 +96,12 @@ const Landing = () => {
             </section>
             <section id="about_us">
                 <AboutUs />
+            </section>
+            <section id="faq">
+                <Faq />
+            </section>
+            <section>
+                <Invitation />
             </section>
         </div>
     );

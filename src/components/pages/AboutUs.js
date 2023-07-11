@@ -6,7 +6,7 @@ const useStyle = makeStyles({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        height: 'calc(100vh - 65px)',
+        height: '100vh',
         backgroundColor: '#e5ac3c',
     },
     header: {
@@ -54,9 +54,10 @@ const AboutUs = () => {
                             Then, BagelDB arrives. This revolutionary, decentralized vector database unleashes a refreshing wave of innovation, cutting GPU costs by an order of magnitude, fostering open-source collaboration, and enhancing data portability. It's a beacon of hope, a promise of a vibrant, cost-effective future in the AI world. The limitations of the past dissolve, replaced by the unlimited potential of BagelDB. Welcome to the future, unchained and unstoppable.
                         </p>
                     </div>
-                    <div style={{fontSize: 29, borderLeft: '5px solid black', width: '45%', paddingLeft: '20px', fontWeight: 'bold'}}>
-                        Welcome to the future unchained and unstoppable
+                    <div style={{fontSize: 29, borderLeft: '5px solid black', width: '55%', paddingLeft: '20px', fontWeight: 'bold'}}>
+                        Welcome to the future, unchained and unstoppable
                     </div>
+
                 </div>
                 <img src={Bagel} alt="bagel" className={classes.bagelImage} height={'100%'} width={'auto'}/>
             </div>

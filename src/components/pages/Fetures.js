@@ -9,7 +9,7 @@ const useStyle = makeStyles({
         justifyContent: 'center',
         flexDirection: 'column',
         alignItems: 'center',
-        height: 'calc(100vh - 65px)',
+        height: '100vh',
         backgroundColor: '#e5ac3c',
     },
     header: {
