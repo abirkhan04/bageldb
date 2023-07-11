@@ -3,7 +3,6 @@ import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AppSpinner } from './components/shared/app-spinner';
 
-const TopNav = lazy(() => import('./components/shared/TopNav'));
 const LandingPage = lazy(() => import('./components/pages/LandingPage'));
 const Features = lazy(() => import('./components/pages/Fetures'));
 const BagelConsole = lazy(() => import('./components/pages/BagelConsole'));
@@ -25,7 +24,6 @@ const theme = createTheme({
 function App() {
   return (<ThemeProvider theme={theme}>
     <BrowserRouter><Suspense fallback={<AppSpinner />}>
-      <TopNav />
       <Routes>
         <Route path="/" element={<LandingPage />}></Route>
         <Route path="features" element={<Features />}></Route>
